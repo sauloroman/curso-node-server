@@ -22,7 +22,7 @@ const emailExistence = async ( email ) => {
 
 }
 
-const userExistence = async( id ) => {
+const userExistenceById = async( id ) => {
 
   const userExists = await User.findById( id )
 
@@ -35,5 +35,5 @@ const userExistence = async( id ) => {
 module.exports = {
   isRoleValid,
   emailExistence,
-  userExistence
+  userExistenceById
 }

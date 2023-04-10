@@ -56,10 +56,6 @@ const putUsers = async (req = request, res = response) => {
   res.status(200).json(user)
 }
 
-const patchUsers = (req, res = response ) => {
-  res.json({ msg: 'Patch API - controller '})
-}
-
 const deleteUsers = async (req = request, res = response ) => {
   const { id } = req.params
 
@@ -73,6 +69,7 @@ const deleteUsers = async (req = request, res = response ) => {
     { new: true, runValidators: true }
   )
 
+
   res.status( 200 ).json( user )
 }
 
@@ -80,6 +77,5 @@ module.exports = {
   getUsers,
   postUsers,
   putUsers,
-  patchUsers,
   deleteUsers
 }
