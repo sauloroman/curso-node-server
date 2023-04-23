@@ -1,5 +1,5 @@
 const { response, request } = require('express')
-const User = require('../models/User')
+const { User } = require('../models')
 const bcrypt = require('bcrypt')
 
 const getUsers = async ( req = request, res = response ) => {
@@ -16,6 +16,12 @@ const getUsers = async ( req = request, res = response ) => {
     quantityUser,
     users
  })
+}
+
+const getUserById = async( req = request, res = response ) => {
+  const { id } = req.params
+  const user = await User.findById( id )
+  res.status(200).json( user )
 }
 
 const postUsers = async ( req = request, res = response) => {
@@ -40,7 +46,6 @@ const putUsers = async (req = request, res = response) => {
     body: { _id, password, google, email, ...restBody }
   } = req
   
-  // TODO => VALIDAR CONTRA BASE DE DATOS
   
   if ( password ) {
     const salt = await bcrypt.genSalt( 10 )
@@ -75,6 +80,7 @@ const deleteUsers = async (req = request, res = response ) => {
 
 module.exports = {
   getUsers,
+  getUserById,
   postUsers,
   putUsers,
   deleteUsers
